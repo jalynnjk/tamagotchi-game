@@ -1,0 +1,23 @@
+- Show begin game modal when page opens
+    -  If user click 'play' button initiate game
+        -  Exit the modal to display game view
+        - Initialize pet's age at 0
+        - Set stats to 100
+        - Begin growth timer`
+            - Age will increase 1 point per second
+            - If age points = 60 grow 1 image
+            - If age points = 300 grow 1 image
+            - If age points = 1200 grow 1 image
+            - If age points = 1500 pet dies of old age
+        - Begin decay of stats using timers when age points = 60
+            - Decrease hunger 1 point per 5 seconds
+            - Decrease happiness 1 point per 8 seconds
+            - Decrease hygiene 1 point per 10 seconds
+        - Create buttons with event listeners to increase hunger, hygiene, and happiness
+        - If hunger, happiness, or hygiene are at 0 will decrease health points
+            - Hunger at 0 will decrease health 5 points per second
+            - Happiness at 0 will decrease health 5 points per second
+            - Hygiene at 0 will decrease health 5 points per second
+        - If health points are at 0 then the pet has died and game is over
+
+- 
