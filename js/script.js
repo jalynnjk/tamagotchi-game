@@ -25,14 +25,21 @@ const playBtnEl = document.querySelector('.play-button');
 const welcomeModalEl = document.querySelector('.modal-welcome');
 const tamagotchiContainerEl = document.querySelector('.tamagotchi-container');
 const ageEl = document.querySelector('#js-age');
-const hungerEl = document.querySelector
-('#js-hunger')
-const happinessEl = document.querySelector('#js-happiness')
-const hygieneEl = document.querySelector('#js-hygiene')
+const hungerEl = document.querySelector('#js-hunger');
+const happinessEl = document.querySelector('#js-happiness');
+const hygieneEl = document.querySelector('#js-hygiene');
 const petImg = document.createElement('img');
-petImg.classList.add('class', 'pet-img')
+petImg.classList.add('class', 'pet-img');
+const feedBtnEl = document.querySelector('.feed');
+const playtimeBtnEl = document.querySelector('.playtime')
+const batheBtnEl = document.querySelector('.clean')
 /*----- event listeners -----*/
 playBtnEl.addEventListener('click', init);
+feedBtnEl.addEventListener('click', feed);
+playtimeBtnEl.addEventListener('click', playtime)
+batheBtnEl.addEventListener('click', bathe)
+
+
 /*----- functions -----*/
 function init() {
 	console.log('you clicked me.');
@@ -47,14 +54,14 @@ function init() {
 	//Create egg and append to container
 	initEgg();
 	handleAgeInterval();
-    hungerDecay()
-    happinessDecay()
-    hygieneDecay()
+	hungerDecay();
+	happinessDecay();
+	hygieneDecay();
 }
 
 function initEgg() {
 	//Create an egg div
-	petImg.setAttribute('src', EGG_STATE)
+	petImg.setAttribute('src', EGG_STATE);
 	//append egg div to tamagotchi-container
 	tamagotchiContainerEl.appendChild(petImg);
 }
@@ -90,22 +97,34 @@ function renderPet() {
 }
 
 function hungerDecay() {
-    const hungerTimer = setInterval(function(){
-        hunger--
-        hungerEl.innerText = hunger
-    }, HUNGER_INTERVAL)
+	const hungerTimer = setInterval(function () {
+		hunger--;
+		hungerEl.innerText = hunger;
+	}, HUNGER_INTERVAL);
 }
 
 function happinessDecay() {
-    const happinessTimer = setInterval (function(){
-        happiness--
-        happinessEl.innerText = happiness
-    }, HAPPINESS_INTERVAL)
+	const happinessTimer = setInterval(function () {
+		happiness--;
+		happinessEl.innerText = happiness;
+	}, HAPPINESS_INTERVAL);
 }
 
 function hygieneDecay() {
-    const hygieneTimer = setInterval (function () {
-        hygiene--
-        hygieneEl.innerText = hygiene
-    }, HYGIENE_INTERVAL)
+	const hygieneTimer = setInterval(function () {
+		hygiene--;
+		hygieneEl.innerText = hygiene;
+	}, HYGIENE_INTERVAL);
+}
+function feed() {
+	hunger += 10;
+	hungerEl.innerText = hunger;
+}
+function playtime() {
+	happiness += 10;
+	happinessEl.innerText = happiness;
+}
+function bathe() {
+	hygiene += 10;
+	hygieneEl.innerText = hygiene;
 }
