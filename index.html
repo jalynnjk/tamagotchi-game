@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="js/script.js" defer></script>
+		<link rel="stylesheet" href="style.css" />
+		<title>Tamagotchi Game</title>
+	</head>
+	<body>
+		<header>
+			<h1>Tamagotchi</h1>
+		</header>
+		<main class="game-container flex-container space-between">
+			<div class="stats-container">
+				<h2>Statistics</h2>
+				<ul>
+					<li>Age: <span id="js-age">0</span></li>
+					<li>Health: 100</li>
+					<li>Hunger: <span id="js-hunger">100</span></li>
+					<li>Happiness: <span id="js-happiness">100</span></li>
+					<li>Hygiene: <span id="js-hygiene">100</span></li>
+				</ul>
+			</div>
+			<div class="tamagotchi-device"><div class="tamagotchi-container"></div></div>
+			<div class="controls-container">
+				<h2>Controls</h2>
+				<button class="feed">Feed</button>
+				<button class="play">Play</button>
+				<button class="clean">Clean</button>
+            </div>
+		</main>
+		<section class="modal-container modal-welcome">
+			<div class="modal-inner">
+				<h1 class="modal-welcome">Welcome to Tamagotchi!</h1>
+				<h2 class="modal-instruction">
+					Keep your Tamagotchi happy by feeding, playing, or bathing it. If you
+					leave it alone for too long the stats will decay, lowering it's
+					health. Once their health reaches 0 your Tamagotchi will pass away.
+				</h2>
+				<button class="play-button">Play!</button>
+			</div>
+		</section>
+		<section class="modal-container modal-game-over hide">
+			<div class="modal-inner">
+				<h1 class="game-over-message">Game Over!</h1>
+				<h2 class="game-over-description">
+					Oh no! Your pet has died. Click "play" to start a new game.
+				</h2>
+				<button class="play-button">Play Again!</button>
+			</div>
+		</section>
+	</body>
+</html>
