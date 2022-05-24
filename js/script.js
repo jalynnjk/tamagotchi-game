@@ -23,6 +23,7 @@ let happiness;
 /*----- cached element references -----*/
 const playBtnEl = document.querySelector('.play-button');
 const welcomeModalEl = document.querySelector('.modal-welcome');
+const gameoverModalEl = document.querySelector('.modal-game-over');
 const tamagotchiContainerEl = document.querySelector('.tamagotchi-container');
 const ageEl = document.querySelector('#js-age');
 const hungerEl = document.querySelector('#js-hunger');
@@ -48,10 +49,10 @@ function init() {
 	//Initialize pet's age at 0
 	age = 0;
 	//Set stats to 100
-	health = 100;
-	hunger = 100;
+	health = 10;
+	hunger = 10;
 	happiness = 10;
-	hygiene = 100;
+	hygiene = 10;
 	//Create egg and append to container
 	initEgg();
 	handleAgeInterval();
@@ -59,6 +60,7 @@ function init() {
 	happinessDecay();
 	hygieneDecay();
 	healthDecay();
+	death();
 }
 
 function initEgg() {
@@ -79,7 +81,7 @@ function handleAgeInterval() {
 }
 
 function renderPet() {
-	if (age === 0) {
+	if (age === 1) {
 		//If age is 1-5: show baby
 		tamagotchiContainerEl.innerHTML = '';
 		petImg.setAttribute('src', BABY_IMAGE);
@@ -100,8 +102,10 @@ function renderPet() {
 
 function hungerDecay() {
 	const hungerTimer = setInterval(function () {
-		hunger--;
-		hungerEl.innerText = hunger;
+		if (hunger > 0) {
+			hunger--;
+			hungerEl.innerText = hunger;
+		}
 	}, HUNGER_INTERVAL);
 }
 
@@ -116,16 +120,23 @@ function happinessDecay() {
 
 function hygieneDecay() {
 	const hygieneTimer = setInterval(function () {
-		hygiene--;
-		hygieneEl.innerText = hygiene;
+		if (hygiene > 0) {
+			hygiene--;
+			hygieneEl.innerText = hygiene;
+		}
 	}, HYGIENE_INTERVAL);
 }
 function healthDecay() {
 	const healthTimer = setInterval(function () {
-		if (hunger === 0 || happiness === 0 || hygiene === 0) health--;
-		healthEl.innerText = health;
+		if (hunger === 0 || happiness === 0 || hygiene === 0) {
+			if (health > 0) {
+				health--;
+				healthEl.innerText = health;
+			}
+		}
 	}, HEALTH_INTERVAL);
 }
+
 function feed() {
 	hunger += 10;
 	hungerEl.innerText = hunger;
