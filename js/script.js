@@ -60,7 +60,6 @@ function init() {
 	happinessDecay();
 	hygieneDecay();
 	healthDecay();
-	death();
 }
 
 function initEgg() {
@@ -77,6 +76,9 @@ function handleAgeInterval() {
 		//update dom with the new age
 		ageEl.innerText = age;
 		renderPet();
+        if (health <= 0){
+            clearInterval(ageTimer)
+        }
 	}, AGE_INTERVAL);
 }
 
@@ -132,7 +134,10 @@ function healthDecay() {
 			if (health > 0) {
 				health--;
 				healthEl.innerText = health;
-			}
+			} else {
+            clearInterval(healthTimer)
+            gameoverModalEl.removeAttribute('class', '.hide')
+            }
 		}
 	}, HEALTH_INTERVAL);
 }
