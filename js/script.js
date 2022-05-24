@@ -8,7 +8,7 @@ const MAX_BABY_AGE = '5';
 const MAX_CHILD_AGE = '12';
 const MAX_TEEN_AGE = '18';
 const MAX_ADULT_AGE = '100';
-const HEALTH_INTERVAL = '';
+const HEALTH_INTERVAL = '1000';
 const HUNGER_INTERVAL = '500';
 const HYGIENE_INTERVAL = '1000';
 const HAPPINESS_INTERVAL = '750';
@@ -28,17 +28,17 @@ const ageEl = document.querySelector('#js-age');
 const hungerEl = document.querySelector('#js-hunger');
 const happinessEl = document.querySelector('#js-happiness');
 const hygieneEl = document.querySelector('#js-hygiene');
+const healthEl = document.querySelector('#js-health');
 const petImg = document.createElement('img');
 petImg.classList.add('class', 'pet-img');
 const feedBtnEl = document.querySelector('.feed');
-const playtimeBtnEl = document.querySelector('.playtime')
-const batheBtnEl = document.querySelector('.clean')
+const playtimeBtnEl = document.querySelector('.playtime');
+const batheBtnEl = document.querySelector('.clean');
 /*----- event listeners -----*/
 playBtnEl.addEventListener('click', init);
 feedBtnEl.addEventListener('click', feed);
-playtimeBtnEl.addEventListener('click', playtime)
-batheBtnEl.addEventListener('click', bathe)
-
+playtimeBtnEl.addEventListener('click', playtime);
+batheBtnEl.addEventListener('click', bathe);
 
 /*----- functions -----*/
 function init() {
@@ -48,8 +48,9 @@ function init() {
 	//Initialize pet's age at 0
 	age = 0;
 	//Set stats to 100
+	health = 100;
 	hunger = 100;
-	happiness = 100;
+	happiness = 10;
 	hygiene = 100;
 	//Create egg and append to container
 	initEgg();
@@ -57,6 +58,7 @@ function init() {
 	hungerDecay();
 	happinessDecay();
 	hygieneDecay();
+	healthDecay();
 }
 
 function initEgg() {
@@ -105,8 +107,10 @@ function hungerDecay() {
 
 function happinessDecay() {
 	const happinessTimer = setInterval(function () {
-		happiness--;
-		happinessEl.innerText = happiness;
+		if (happiness > 0) {
+			happiness--;
+			happinessEl.innerText = happiness;
+		}
 	}, HAPPINESS_INTERVAL);
 }
 
@@ -115,6 +119,12 @@ function hygieneDecay() {
 		hygiene--;
 		hygieneEl.innerText = hygiene;
 	}, HYGIENE_INTERVAL);
+}
+function healthDecay() {
+	const healthTimer = setInterval(function () {
+		if (hunger === 0 || happiness === 0 || hygiene === 0) health--;
+		healthEl.innerText = health;
+	}, HEALTH_INTERVAL);
 }
 function feed() {
 	hunger += 10;
